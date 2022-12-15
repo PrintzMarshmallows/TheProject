@@ -28,7 +28,7 @@ public class FinalScore {
 		String prison;
 		while (readHomework.hasNextLine()) {
 			prison = readHomework.nextLine();
-			str = readHomework.nextLine().replaceAll("[^\\d.]", "");
+			str = prison.replaceAll("[^\\d.]", "");
 			str = str.trim();
 	         if (str == theNameOfStudent) {
 	            	 try {
@@ -73,7 +73,7 @@ public class FinalScore {
 		String prison;
 		while (readQuiz.hasNextLine()) {
 			prison = readQuiz.nextLine();
-			str = readQuiz.nextLine().replaceAll("[^\\d.]", "");
+			str = prison.replaceAll("[^\\d.]", "");
 			str = str.trim();
 	         if (str == theNameOfStudent) {
 	            	 try {
@@ -118,7 +118,7 @@ public class FinalScore {
 			String prison;
 			while (readExam.hasNextLine()) {
 				prison = readExam.nextLine();
-				str = readExam.nextLine().replaceAll("[^\\d.]", "");
+				str = prison.replaceAll("[^\\d.]", "");
 				str = str.trim();
 		         if (str == theNameOfStudent) {
 		            	 try {
@@ -162,7 +162,7 @@ public class FinalScore {
 			String prison;
 			while (readFinal.hasNextLine()) {
 				prison = readFinal.nextLine();
-				str = readFinal.nextLine().replaceAll("[^\\d.]", "");
+				str = prison.replaceAll("[^\\d.]", "");
 				str = str.trim();
 		         if (str == theNameOfStudent) {
 		            	 try {
