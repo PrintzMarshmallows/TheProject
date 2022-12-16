@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
 public class FinalProjectMain {
-	public static void AddScore(String[] nameStudents) {
+	public static void AddScore(String[] nameStudents) throws FileNotFoundException {
 		String myVariableStudent;
 		Scanner scnr = new Scanner (System.in);
 		
@@ -56,36 +56,40 @@ public class FinalProjectMain {
 	
 	}
 	
-	public static void AddScoreHomework(String theNameOfStudent) {
+	public static void AddScoreHomework(String theNameOfStudent) throws FileNotFoundException {
 		//creating constructors so so java can read the file and edit it
-		File homework = new File (ImportFile1.txt);
+		File homework = new File ("ImportFile1.txt");
 		PrintWriter printOutput = new PrintWriter(homework);
 		Scanner readHomework = new Scanner(homework);
 		Scanner scanner = new Scanner (System.in);
 		StringBuffer buffer = new StringBuffer();
-		
+		String theplace = readHomework.nextLine();
 		//Reading the file and finding out if the student has a score already 
-		String str;
+		String str1 = null;
 		double oldScore;
 		while (readHomework.hasNextLine()) {
 			 String functionPlacement = readHomework.nextLine();
 	         buffer.append(functionPlacement + System.lineSeparator());
-	         str = functionPlacement.replaceAll("[^\\d.]", "");
-	         str = str.trim();
-	         if (str == theNameOfStudent) {
-	            	 str = functionPlacement.replaceAll("[^\\d.]", "");
+	         str1 = functionPlacement.replaceAll("[^\\d.]", "");
+	         str1 = str1.trim();
+	         if (str1 == theNameOfStudent) {
+	        	 try {
+	            	 oldScore = Double.parseDouble(functionPlacement);
+	            	 System.out.println("The score already exists");
+	            	 System.exit(0);
+	        	 }
+	        	 catch (NumberFormatException f) {
+	        		 System.out.println("There is no score here");
+	        		 break;
+	        	 }
 	         }
 	    }
 		
 		//if Double.parseDouble(str) actually gets a value, then that means the score already existed meaning the person cannot add another one
-		double score;
-		try {
-   		 oldScore = Double.parseDouble(str);
-   		 System.out.println("This score already exists");
-   	 	}
+		double score = 0;
 		
 		//if Double.parseDouble(str) doesn't have a value, the programs will ask the score for whatever category
-   	 	catch (NumberFormatException k){
+   	 	
    		 System.out.println("There is no score for " + theNameOfStudent);
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
@@ -103,47 +107,49 @@ public class FinalProjectMain {
 				System.out.println("Please input only numbers without a percent sign or special characters. ");
 			}
 			}
-   	 	}
 		//this is how I'm going to rewrite the file with the new added score. I hope this works
 		String fileContents = buffer.toString();
-		String StringToBeReplaced = str;
+		String StringToBeReplaced = str1;
 		String theNewString = theNameOfStudent + "\t" + score;
 		fileContents.replaceAll(StringToBeReplaced, theNewString);
 		scanner.close();
 	}
-	public static void AddScoreQuiz(String theNameOfStudent) {
+	public static void AddScoreQuiz(String theNameOfStudent) throws FileNotFoundException {
 		//creating constructors so so java can read the file and edit it
-		File quiz = new File (ImportFile2.txt);
+		File quiz = new File ("ImportFile2.txt");
 		PrintWriter printOutput = new PrintWriter(quiz);
 		Scanner readQuiz = new Scanner(quiz);
 		Scanner scanner = new Scanner (System.in);
 		StringBuffer buffer = new StringBuffer();
 		
 		//Reading the file and finding out if the student has a score already 
-		String str;
+		String str = null;
 		double oldScore;
 		while (readQuiz.hasNextLine()) {
-			 String temp = readQuiz.nextLine();
-	         buffer.append(temp + System.lineSeparator());
-	         str = temp.replaceAll("[^\\d.]", "");
+			 String functionPlacement = readQuiz.nextLine();
+	         buffer.append(functionPlacement + System.lineSeparator());
+	         str = functionPlacement.replaceAll("[^\\d.]", "");
 	         str = str.trim();
 	         if (str == theNameOfStudent) {
-	            	 str = readQuiz.nextLine().replaceAll("[^\\d.]", "");
+	        	 try {
+	            	 oldScore = Double.parseDouble(functionPlacement);
+	            	 System.out.println("The score already exists");
+	            	 System.exit(0);
+	        	 }
+	        	 catch (NumberFormatException f) {
+	        		 System.out.println("There is no score here");
+	        		 break;
+	        	 }
 	         }
 	    }
 	
-		double score;
+		double score = 0;
 		
 		//if Double.parseDouble(str) actually gets a value, then that means the score already existed meaning the person cannot add another one
-		try {
-   		 oldScore = Double.parseDouble(str);
    		 
-   		 System.out.println("This score already exists");
-   	 	}
+ 
 		
 		//if Double.parseDouble(str) doesn't have a value, the programs will ask the score for whatever category
-   	 	catch (NumberFormatException k){
-   		System.out.println("There is no score for" + theNameOfStudent);
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
 		while (placeholderForScore == false) {
@@ -160,7 +166,6 @@ public class FinalProjectMain {
 				System.out.println("Please input only numbers without a percent sign or special characters. ");
 			}
 			}
-   	 	}
 		//this is how I'm going to rewrite the file with the new added score. I hope this works
 		String fileContents = buffer.toString();
 		String StringToBeReplaced = str;
@@ -168,37 +173,39 @@ public class FinalProjectMain {
 		fileContents.replaceAll(StringToBeReplaced, theNewString);
 		scanner.close();
 	}
-	public static void AddScoreExam(String theNameOfStudent) {
+	public static void AddScoreExam(String theNameOfStudent) throws FileNotFoundException{
 		//creating constructors so so java can read the file and edit it
-		File exam = new File (ImportFile3.txt);
+		File exam = new File ("ImportFile3.txt");
 		PrintWriter printOutput = new PrintWriter(exam);
 		Scanner readExam = new Scanner(exam);
 		Scanner scanner = new Scanner (System.in);
 		StringBuffer buffer = new StringBuffer();
 		
 		//Reading the file and finding out if the student has a score already
-		String str;
+		String str = null;
 		double oldScore;
 		while (readExam.hasNextLine()) {
-	         buffer.append(readExam.nextLine() + System.lineSeparator());
-	         str = readExam.nextLine().replaceAll("[^\\d.]", "");
+			 String functionPlacement = readExam.nextLine();
+	         buffer.append(functionPlacement + System.lineSeparator());
+	         str = functionPlacement.replaceAll("[^\\d.]", "");
 	         str = str.trim();
 	         if (str == theNameOfStudent) {
-	            	 str = readExam.nextLine().replaceAll("[^\\d.]", "");
+	        	 try {
+	            	 oldScore = Double.parseDouble(functionPlacement);
+	            	 System.out.println("The score already exists");
+	            	 System.exit(0);
+	        	 }
+	        	 catch (NumberFormatException f) {
+	        		 System.out.println("There is no score here");
+	        		 break;
+	        	 }
 	         }
 	    }
 	
 		//if Double.parseDouble(str) actually gets a value, then that means the score already existed meaning the person cannot add another one
-		double score;
-		try {
-   		 oldScore = Double.parseDouble(str);
-   		 
-   		 System.out.println("This score already exists");
-   	 	}
+		double score = 0;
 		
 		//if Double.parseDouble(str) doesn't have a value, the programs will ask the score for whatever category
-   	 	catch (NumberFormatException k){
-   		 System.out.println("There is no score for" + theNameOfStudent);
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
 		while (placeholderForScore == false) {
@@ -215,7 +222,6 @@ public class FinalProjectMain {
 				System.out.println("Please input only numbers without a percent sign or special characters. ");
 			}
 			}
-   	 	}
 		
 		//this is how I'm going to rewrite the file with the new added score. I hope this works
 		String fileContents = buffer.toString();
@@ -224,39 +230,41 @@ public class FinalProjectMain {
 		fileContents.replaceAll(StringToBeReplaced, theNewString);
 		scanner.close();
 	}
-	public static void AddScoreFinal(String theNameOfStudent) {
+	public static void AddScoreFinal(String theNameOfStudent) throws FileNotFoundException{
 		
 		//creating constructors so so java can read the file and edit it
-		File theFinal = new File (ImportFile4.txt);
+		File theFinal = new File ("ImportFile4.txt");
 		PrintWriter printOutput = new PrintWriter(theFinal);
 		Scanner readFinal = new Scanner(theFinal);
 		Scanner scanner = new Scanner (System.in);
 		StringBuffer buffer = new StringBuffer();
 		
 		//Reading the file and finding out if the student has a score already
-		String str;
+		String str = null;
 		double oldScore;
 		while (readFinal.hasNextLine()) {
-			String ourReadFinal = readFinal.nextLine();
-	         buffer.append(ourReadFinal + System.lineSeparator());
-	         str = ourReadFinal.replaceAll("[^\\d.]", "");
+			 String functionPlacement = readFinal.nextLine();
+	         buffer.append(functionPlacement + System.lineSeparator());
+	         str = functionPlacement.replaceAll("[^\\d.]", "");
 	         str = str.trim();
 	         if (str == theNameOfStudent) {
-	            	 str = readFinal.nextLine().replaceAll("[^\\d.]", "");
+	        	 try {
+	            	 oldScore = Double.parseDouble(functionPlacement);
+	            	 System.out.println("The score already exists");
+	            	 System.exit(0);
+	        	 }
+	        	 catch (NumberFormatException f) {
+	        		 System.out.println("There is no score here");
+	        		 break;
+	        	 }
 	         }
 	    }
 	
 		//if Double.parseDouble(str) actually gets a value, then that means the score already existed meaning the person cannot add another one
-		double score;
-		try {
-   		 oldScore = Double.parseDouble(str);
-   		 
-   		 System.out.println("This score already exists");
-   	 	}
+		double score = 0;
 		
 		//if Double.parseDouble(str) doesn't have a value, the programs will ask the score for whatever category
-   	 	catch (NumberFormatException k){
-   		 System.out.println("There is no score for" + theNameOfStudent);
+   	
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
 		while (placeholderForScore == false) {
@@ -273,7 +281,6 @@ public class FinalProjectMain {
 				System.out.println("Please input only numbers without a percent sign or special characters. ");
 			}
 			}
-   	 	}
 		
 		//this is how I'm going to rewrite the file with the new added score. I hope this works
 		String fileContents = buffer.toString();
@@ -282,7 +289,8 @@ public class FinalProjectMain {
 		fileContents.replaceAll(StringToBeReplaced, theNewString);
 		scanner.close();
 	}
-	public static void main (String[] args) {
-
+	public static void main (String[] args) throws FileNotFoundException{
+		String[] students = {"Ari", "Dylan", "Marshmallows"};
+		AddScore(String[] students);
 	}
 }
