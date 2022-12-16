@@ -1,10 +1,11 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class FinalScore {
 	
-	public static double GetFinalScore() {
+	public static double GetFinalScore() throws FileNotFoundException{
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("What is the name of the student that you are trying to get the final score for?");
 		String nameOfStudent = scnr.next();
@@ -18,8 +19,8 @@ public class FinalScore {
 		return finalScoreOfClass;
 	}
 	
-	public static double TheFirstFile(String theNameOfStudent) {
-		File homework = new File (ImportFile1.txt);
+	public static double TheFirstFile(String theNameOfStudent) throws FileNotFoundException{
+		File homework = new File ("ImportFile1.txt");
 		Scanner readHomework = new Scanner(homework);
 		Scanner scanner = new Scanner (System.in);
 		//Reading the file and finding out if the student has a score already 
@@ -42,7 +43,7 @@ public class FinalScore {
 	         }
 	    }
 		//if Double.parseDouble(prison) doesn't have a value, the programs will ask the score for whatever category
-		double score;
+		double score = 0;
    		System.out.println("There is no score for " + theNameOfStudent);
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
@@ -63,8 +64,8 @@ public class FinalScore {
 		return score;
    	 	}
 	
-	public static double TheSecondFile(String theNameOfStudent) {
-		File quiz = new File (ImportFile2.txt);
+	public static double TheSecondFile(String theNameOfStudent) throws FileNotFoundException{
+		File quiz = new File ("ImportFile2.txt");
 		Scanner readQuiz = new Scanner(quiz);
 		Scanner scanner = new Scanner (System.in);
 		//Reading the file and finding out if the student has a score already 
@@ -87,7 +88,7 @@ public class FinalScore {
 	         }
 	    }
 		//if Double.parseDouble(prison) doesn't have a value, the programs will ask the score for whatever category
-		double score;
+		double score = 0;
    		System.out.println("There is no score for " + theNameOfStudent);
    		System.out.println("What is the score? ");
 		boolean placeholderForScore = false;
@@ -108,8 +109,8 @@ public class FinalScore {
 		return score;
    	 	}
 	
-		public static double TheThirdFile(String theNameOfStudent) {
-			File exam = new File (ImportFile3.txt);
+		public static double TheThirdFile(String theNameOfStudent) throws FileNotFoundException{
+			File exam = new File ("ImportFile3.txt");
 			Scanner readExam = new Scanner(exam);
 			Scanner scanner = new Scanner (System.in);
 			//Reading the file and finding out if the student has a score already 
@@ -132,7 +133,7 @@ public class FinalScore {
 		         }
 		    }
 			//if Double.parseDouble(prison) doesn't have a value, the programs will ask the score for whatever category
-			double score;
+			double score = 0;
 	   		System.out.println("There is no score for " + theNameOfStudent);
 	   		System.out.println("What is the score? ");
 			boolean placeholderForScore = false;
@@ -152,8 +153,8 @@ public class FinalScore {
 				}
 			return score;
 		}
-		public static double TheFourthFile (String theNameOfStudent) {
-			File theFinal = new File (ImportFile4.txt);
+		public static double TheFourthFile (String theNameOfStudent) throws FileNotFoundException {
+			File theFinal = new File ("ImportFile4.txt");
 			Scanner readFinal = new Scanner(theFinal);
 			Scanner scanner = new Scanner (System.in);
 			//Reading the file and finding out if the student has a score already 
@@ -176,7 +177,7 @@ public class FinalScore {
 		         }
 		    }
 			//if Double.parseDouble(prison) doesn't have a value, the programs will ask the score for whatever category
-			double score;
+			double score = 0;
 	   		System.out.println("There is no score for " + theNameOfStudent);
 	   		System.out.println("What is the score? ");
 			boolean placeholderForScore = false;
