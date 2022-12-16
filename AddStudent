@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 public class AddStudentClass {
 	
-	public void AddStudent(String[] nameStudents) {
+	public static void AddStudent(String[] nameStudents) throws FileNotFoundException{
 		Scanner scnr = new Scanner (System.in);
 		
 		String nameOfStudent = "";
@@ -122,4 +122,9 @@ public class AddStudentClass {
 		
 		scnr.close();
 	}
+	public static void main (String[] args) throws FileNotFoundException {
+		String[] students = {"Ari", "Dylan", "Marshmallows"};
+		AddStudent(students);
+	}
 }
+
