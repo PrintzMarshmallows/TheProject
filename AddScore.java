@@ -11,10 +11,12 @@ public class FinalProjectMain {
 		boolean placeholder = false;
 	do {
 			myVariableStudent = scnr.next();
+			myVariableStudent = myVariableStudent.trim();
 			for (int i = 0; i < nameStudents.length; i++) {
 				if (nameStudents[i] == myVariableStudent) {
 					System.out.println("The student you selected is " + myVariableStudent + ". This student exists.");
 					placeholder = true;
+					break;
 				}
 				else {
 					System.out.println("This student does not exist. Please input a student name:");
